@@ -78,7 +78,7 @@ def send_string(text):
 run("python add07.py ps2 -p COM25 sim-on")
 
 run("python add07.py ps2 -p COM25 key")
-time.sleep(2) 
+time.sleep(2)         # delay to allow us to capture echo sent by host
 
 print("Now testng for Keyboard Functionality!")
 
@@ -88,36 +88,5 @@ for line in lines:
     #time.sleep(0.1)  # inter-line delay
 
 run("python add07.py ps2 -p COM25 sim-off")
-
-"""
-
-print("Now testing for Mouse Functionality!")
-
-run("python add07.py ps2 -p COM25 sim-on")
-run("python add07.py ps2 -p COM25 mouse")
-
-i = 0
-while i < 10:
-    run("python add07.py ps2 -p COM25 move 0 -20")
-    i = i + 1
-i = 0
-
-while i < 10:
-    run("python add07.py ps2 -p COM25 move 20 0")
-    i = i + 1
-i = 0
-
-while i < 10:
-    run("python add07.py ps2 -p COM25 move 0 20")
-    i = i + 1
-i = 0
-
-while i < 10:
-    run("python add07.py ps2 -p COM25 move -20 0")
-    i = i + 1
-i = 0
-
-run("python add07.py ps2 -p COM25 sim-off")
-"""
 
 print("Finish testing")
