@@ -14,7 +14,7 @@ scan_codes = {
     '@': '1E', '$': '25', '%': '2E', '^': '36',
     '&': '3D', '*': '3E', '(': '46', ')': '45',
     ',': '41', '.': '49', '/': '4A', ';': '4C', "'": '52',
-    '=': '55', '-': '4E'
+    '=': '55', '-': '4E',
 }
 
 lines = [
@@ -77,23 +77,23 @@ def send_string(text):
 
 def movement_square():
     i = 0
-    while i < 10:
-        run("python add07.py ps2 -p COM25 move 0 -20")
+    while i < 5:
+        run("python add07.py ps2 -p COM25 move 0 -40")
         i = i + 1
     i = 0
 
-    while i < 10:
-        run("python add07.py ps2 -p COM25 move 20 0")
+    while i < 5:
+        run("python add07.py ps2 -p COM25 move 40 0")
         i = i + 1
     i = 0
 
-    while i < 10:
-        run("python add07.py ps2 -p COM25 move 0 20")
+    while i < 5:
+        run("python add07.py ps2 -p COM25 move 0 40")
         i = i + 1
     i = 0
 
-    while i < 10:
-        run("python add07.py ps2 -p COM25 move -20 0")
+    while i < 5:
+        run("python add07.py ps2 -p COM25 move -40 0")
         i = i + 1
     i = 0
 
@@ -122,7 +122,6 @@ def example():
 
     # right click
     run("python add07.py ps2 -p COM25 move 0 0 --right")
-    time.sleep(0.5)
     run("python add07.py ps2 -p COM25 move 0 0")
 
     # move right 2 spaces
@@ -137,9 +136,21 @@ def example():
         i = i + 1
     i = 0
 
-    # move right to cancel selected
+    # click on select
     run("python add07.py ps2 -p COM25 move 0 0 --left")
-    time.sleep(0.5)
+    run("python add07.py ps2 -p COM25 move 0 0")
+
+    
+    i = 0
+    while i < 12:
+        run("python add07.py ps2 -p COM25 move -10 0")
+        run("python add07.py ps2 -p COM25 move 0 -10")
+        i = i + 1
+    i = 0
+    run("python add07.py ps2 -p COM25 move 0 -10")
+    run("python add07.py ps2 -p COM25 move 0 -10")
+
+    run("python add07.py ps2 -p COM25 move 0 0 --left")
     run("python add07.py ps2 -p COM25 move 0 0")
 
     # mouse wheel operation (cannot be tested, no ps2 mouse with wheel)
@@ -147,6 +158,8 @@ def example():
         #run("python add07.py ps2 -p COM25 move 0 0 --wheel -1")
         #i = i + 1
     #i = 0
+
+
 
     
 
@@ -163,3 +176,6 @@ example()
 run("python add07.py ps2 -p COM25 sim-off")
 
 print("Finish testing")
+
+# proceed to run keyboard functions 
+run("python auto_test_keyboard_script.py")

@@ -8,17 +8,15 @@ scan_codes = {
     'o': '44', 'p': '4D', 'q': '15', 'r': '2D', 's': '1B', 't': '2C', 'u': '3C',
     'v': '2A', 'w': '1D', 'x': '22', 'y': '35', 'z': '1A',
     '0': '45', '1': '16', '2': '1E', '3': '26', '4': '25', '5': '2E', '6': '36',
-    '7': '3D', '8': '3E', '9': '46',
-    ' ': '29', '\\': '5D', '{':'54', '}':'5B', 
+    '7': '3D', '8': '3E', '9': '46', ':': '4C', '`': '0E', '~': '0E',
+    ' ': '29', '\\': '5D', '[':'54', ']': '5B', '{': '54', '}': '5B', 
     '+': '55', '!': '16', '#': '26', '|': '5D',
     '@': '1E', '$': '25', '%': '2E', '^': '36',
     '&': '3D', '*': '3E', '(': '46', ')': '45',
-    ',': '41', '.': '49', '/': '4A', ';': '4C', "'": '52',
-    '=': '55', '-': '4E'
+    ',': '41', '.': '49', '/': '4A', ';': '4C', "'": '52', '"' : '52',
+    '=': '55', '-': '4E', '_': '4E', '<': '41', '>': '49', '?': '4A',
 }
-
-lines = [
-    "+hello",
+lines_kunlun = ["+hello",
     "HELLO",
     "Hello",
     "HeLLo",
@@ -47,6 +45,18 @@ lines = [
     "123456"
 ]
 
+lines = [
+    "Stress Testing Dennis",
+    "`1234567890-=",
+    "~!@#$%^&*()_+",
+    "qwertyuiop[]\\",
+    "QWERTYUIOP{}|",
+    "asdfghjkl;'",
+    "ASDFGHJKL:\"",
+    "zxcvbnm,./",
+    "ZXCVBNM<>?"
+]
+
 COM_PORT = "COM25"
 
 def run(cmd):
@@ -64,14 +74,14 @@ def send_string(text):
             continue
 
         # handle shiftup for uppercase / special
-        if char.isupper() or char in "+!#@$%|^&*()":
+        if char.isupper() or char in '+!#@$%|^&*():"~<>?{}?':
             run("python add07.py ps2 -p COM25 type 12,0")    
             #time.sleep(0.05)  # inter-key delay
 
         run_ps2_type(code)
 
         # handle shiftdown for uppercase / special
-        if char.isupper() or char in "+!#@$%^&*()":
+        if char.isupper() or char in '+!#@$%|^&*():~<>"{}?':
             run("python add07.py ps2 -p COM25 type 12,1")
             #time.sleep(0.05)  # inter-key delay
 
