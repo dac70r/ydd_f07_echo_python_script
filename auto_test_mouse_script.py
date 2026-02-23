@@ -47,7 +47,7 @@ lines = [
     "123456"
 ]
 
-COM_PORT = "COM25"
+COM_PORT = "COM44"
 
 def run(cmd):
     print(">>", cmd)
@@ -65,97 +65,97 @@ def send_string(text):
 
         # handle shiftup for uppercase / special
         if char.isupper() or char in "+!#@$%|^&*()":
-            run("python add07.py ps2 -p COM25 type 12,0")    
+            run("python add07.py ps2 -p COM44 type 12,0")    
             time.sleep(0.05)  # inter-key delay
 
         run_ps2_type(code)
 
         # handle shiftdown for uppercase / special
         if char.isupper() or char in "+!#@$%^&*()":
-            run("python add07.py ps2 -p COM25 type 12,1")
+            run("python add07.py ps2 -p COM44 type 12,1")
             time.sleep(0.05)  # inter-key delay
 
 def movement_square():
     i = 0
     while i < 5:
-        run("python add07.py ps2 -p COM25 move 0 -40")
+        run("python add07.py ps2 -p COM44 move 0 -20 --wheel 0")
         i = i + 1
     i = 0
 
     while i < 5:
-        run("python add07.py ps2 -p COM25 move 40 0")
+        run("python add07.py ps2 -p COM44 move 20 0 --wheel 0")
         i = i + 1
     i = 0
 
     while i < 5:
-        run("python add07.py ps2 -p COM25 move 0 40")
+        run("python add07.py ps2 -p COM44 move 0 20 --wheel 0")
         i = i + 1
     i = 0
 
     while i < 5:
-        run("python add07.py ps2 -p COM25 move -40 0")
+        run("python add07.py ps2 -p COM44 move -20 0 --wheel 0")
         i = i + 1
     i = 0
 
 def double_left_click():
-    run("python add07.py ps2 -p COM25 move 0 0 --left")
-    run("python add07.py ps2 -p COM25 move 0 0 ")
-    run("python add07.py ps2 -p COM25 move 0 0 --left")
-    run("python add07.py ps2 -p COM25 move 0 0 ")
+    run("python add07.py ps2 -p COM44 move 0 0 --left --wheel 0")
+    run("python add07.py ps2 -p COM44 move 0 0 --wheel 0 ")
+    run("python add07.py ps2 -p COM44 move 0 0 --left --wheel 0")
+    run("python add07.py ps2 -p COM44 move 0 0 --wheel 0 ")
 
 # right click press down
 def example():
     i = 0
     while i < 5:
-        run("python add07.py ps2 -p COM25 move 0 -10 --left")
+        run("python add07.py ps2 -p COM44 move 0 -10 --left --wheel 0")
         i = i + 1
     i = 0
 
     # move right to empty space
     while i < 5:
-        run("python add07.py ps2 -p COM25 move 10 0")
+        run("python add07.py ps2 -p COM44 move 10 0 --wheel 0")
         i = i + 1
     i = 0
 
     # move right to cancel selected
-    run("python add07.py ps2 -p COM25 move 0 0 --left")
+    run("python add07.py ps2 -p COM44 move 0 0 --left --wheel 0")
 
     # right click
-    run("python add07.py ps2 -p COM25 move 0 0 --right")
-    run("python add07.py ps2 -p COM25 move 0 0")
+    run("python add07.py ps2 -p COM44 move 0 0 --right --wheel 0")
+    run("python add07.py ps2 -p COM44 move 0 0 --wheel 0")
 
     # move right 2 spaces
     while i < 2:
-        run("python add07.py ps2 -p COM25 move 10 0")
+        run("python add07.py ps2 -p COM44 move 10 0 --wheel 0")
         i = i + 1
     i = 0
 
     # move down 4 spaces
     while i < 7:
-        run("python add07.py ps2 -p COM25 move 0 -8")
+        run("python add07.py ps2 -p COM44 move 0 -8 --wheel 0")
         i = i + 1
     i = 0
 
     # click on select
-    run("python add07.py ps2 -p COM25 move 0 0 --left")
-    run("python add07.py ps2 -p COM25 move 0 0")
+    run("python add07.py ps2 -p COM44 move 0 0 --left --wheel 0")
+    run("python add07.py ps2 -p COM44 move 0 0 --wheel 0")
 
     
     i = 0
     while i < 12:
-        run("python add07.py ps2 -p COM25 move -10 0")
-        run("python add07.py ps2 -p COM25 move 0 -10")
+        run("python add07.py ps2 -p COM44 move -10 0 --wheel 0")
+        run("python add07.py ps2 -p COM44 move 0 -10 --wheel 0")
         i = i + 1
     i = 0
-    run("python add07.py ps2 -p COM25 move 0 -10")
-    run("python add07.py ps2 -p COM25 move 0 -10")
+    run("python add07.py ps2 -p COM44 move 0 -10 --wheel 0")
+    run("python add07.py ps2 -p COM44 move 0 -10 --wheel 0")
 
-    run("python add07.py ps2 -p COM25 move 0 0 --left")
-    run("python add07.py ps2 -p COM25 move 0 0")
+    run("python add07.py ps2 -p COM44 move 0 0 --left --wheel 0")
+    run("python add07.py ps2 -p COM44 move 0 0 --wheel 0")
 
     # mouse wheel operation (cannot be tested, no ps2 mouse with wheel)
     #while i < 7:
-        #run("python add07.py ps2 -p COM25 move 0 0 --wheel -1")
+        #run("python add07.py ps2 -p COM44 move 0 0 --wheel -1")
         #i = i + 1
     #i = 0
 
@@ -166,16 +166,16 @@ def example():
 
 print("Now testing for Mouse Functionality!")
 
-run("python add07.py ps2 -p COM25 sim-on")
-run("python add07.py ps2 -p COM25 mouse")
+run("python add07.py ps2 -p COM44 sim-on")
+run("python add07.py ps2 -p COM44 mouse")
 
 movement_square()
 double_left_click()
 example()
 
-run("python add07.py ps2 -p COM25 sim-off")
+run("python add07.py ps2 -p COM44 sim-off")
 
 print("Finish testing")
 
 # proceed to run keyboard functions 
-run("python auto_test_keyboard_script.py")
+#run("python auto_test_keyboard_script.py")

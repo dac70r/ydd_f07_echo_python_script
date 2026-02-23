@@ -57,7 +57,7 @@ lines = [
     "ZXCVBNM<>?"
 ]
 
-COM_PORT = "COM25"
+COM_PORT = "COM44"
 
 def run(cmd):
     print(">>", cmd)
@@ -75,28 +75,36 @@ def send_string(text):
 
         # handle shiftup for uppercase / special
         if char.isupper() or char in '+!#@$%|^&*():"~<>?{}?':
-            run("python add07.py ps2 -p COM25 type 12,0")    
+            run("python add07.py ps2 -p COM44 type 12,0")    
             #time.sleep(0.05)  # inter-key delay
 
         run_ps2_type(code)
 
         # handle shiftdown for uppercase / special
         if char.isupper() or char in '+!#@$%|^&*():~<>"{}?':
-            run("python add07.py ps2 -p COM25 type 12,1")
+            run("python add07.py ps2 -p COM44 type 12,1")
             #time.sleep(0.05)  # inter-key delay
 
-run("python add07.py ps2 -p COM25 sim-on")
 
-run("python add07.py ps2 -p COM25 key")
-time.sleep(2)         # delay to allow us to capture echo sent by host
+def main():
+    run("python add07.py ps2 -p COM44 sim-on")
 
-print("Now testng for Keyboard Functionality!")
+    run("python add07.py ps2 -p COM44 key")
+    #time.sleep(10)         # delay to allow us to capture echo sent by host
 
-for line in lines:
-    send_string(line)
-    run("python add07.py ps2 -p COM25 type 5A")      #space
-    #time.sleep(0.1)  # inter-line delay
+    print("Now testng for Keyboard Functionality!")
 
-run("python add07.py ps2 -p COM25 sim-off")
+    for line in lines:
+        send_string(line)
+        run("python add07.py ps2 -p COM44 type 5A")      #space
+        #time.sleep(0.1)  # inter-line delay
 
-print("Finish testing")
+    run("python add07.py ps2 -p COM44 sim-off")
+
+    print("Finish testing")
+
+for i in range(1):
+    main()
+
+
+
